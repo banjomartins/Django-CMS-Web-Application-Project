@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <!-- Hero -->
+  <div class="p-5 mb-4 bg-light rounded-3 border">
+    <div class="container-fluid py-4">
+      <h1 class="display-6 fw-semibold mb-2">
+        Welcome{% if user.is_authenticated %}, {{ user.username }}{% endif %} 👋
+      </h1>
+      <p class="col-lg-8 fs-6 text-muted mb-4">
+        This is your Django demo app. Manage users and products, and explore the admin-powered CMS.
+      </p>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'user_form' %}" class="btn btn-primary me-2">Update My Info</a>
+        <a href="{% url 'product_list' %}" class="btn btn-outline-primary">Browse Products</a>
+      {% else %}
+        <a href="{% url 'signup' %}" class="btn btn-success me-2">Create Account</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-primary">Login</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Quick actions -->
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Contact</h5>
+          <p class="card-text text-muted">Need help or details? Reach out on the contact page.</p>
+          <a href="{% url 'contact' %}" class="btn btn-outline-secondary">Contact us</a>
+        </div>
+      </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Users</h5>
+          <p class="card-text text-muted">View all submitted users. Update or delete entries.</p>
+          <a href="{% url 'user_list' %}" class="btn btn-outline-secondary">Open user list</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Products</h5>
+          <p class="card-text text-muted">See available products and their details.</p>
+          <a href="{% url 'product_list' %}" class="btn btn-outline-secondary">View products</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="col-md-8">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Why create an account?</h5>
+          <ul class="text-muted mb-3">
+            <li>Submit and update your information</li>
+            <li>Access the user list and product pages</li>
+            <li>Experience the full CMS workflow</li>
+          </ul>
+          <a href="{% url 'signup' %}" class="btn btn-primary me-2">Get started</a>
+          <a href="{% url 'login' %}" class="btn btn-outline-primary">I already have an account</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

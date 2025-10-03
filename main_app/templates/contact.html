@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 700px;">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="mb-4 text-center">Contact Us</h2>
+      <p class="text-muted text-center mb-4">
+        We'd love to hear from you! Reach out using the details below.
+      </p>
+
+      <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item">
+          <strong>Email:</strong> <a href="mailto:support@example.com">banjomartins@gmail.com</a>
+        </li>
+        <li class="list-group-item">
+          <strong>Phone:</strong> +1 (555) 123-4567
+        </li>
+        <li class="list-group-item">
+          <strong>Address:</strong><br>
+          123 Main Street, Suite 456<br>
+          Windsor, ON, Canada
+        </li>
+      </ul>
+
+      <div class="text-center">
+        <a href="{% url 'home' %}" class="btn btn-outline-primary">Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

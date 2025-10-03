@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Available Products</h2>
+
+  {% if products %}
+  <div class="row">
+    {% for product in products %}
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          {% if product.photo %}
+            <img src="{{ product.photo.url }}" class="card-img-top" alt="{{ product.name }}" style="height:200px; object-fit:cover;">
+          {% else %}
+            <img src="https://via.placeholder.com/200x200.png?text=No+Image" class="card-img-top" alt="No Image">
+          {% endif %}
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text text-muted small">{{ product.description|truncatewords:20 }}</p>
+            <p class="fw-bold mt-auto">${{ product.price }}</p>
+
+            {% if product.is_available %}
+              <span class="badge bg-success">Available</span>
+            {% else %}
+              <span class="badge bg-danger">Not Available</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <div class="alert alert-info text-center">
+      No products available right now.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
